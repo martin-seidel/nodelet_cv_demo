@@ -1,0 +1,7 @@
+<library path="lib/libFilterOnMat">
+   <class name="vision/FilterOnMat" type="vision::FilterOnMat" base_class_type="nodelet::Nodelet">
+      <description>
+         This class Receive an ROS-image do something with it and publish the resulting ROS-image.
+      </description>
+   </class>
+</library>
