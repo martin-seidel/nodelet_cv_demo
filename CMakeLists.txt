@@ -124,7 +124,7 @@ include_directories(
 # add_library(nodelet_cv_demo
 #   src/${PROJECT_NAME}/nodelet_cv_demo.cpp
 # )
-add_library(FilterOnMat src/filterOnMat.cpp)
+add_library(visionFilter src/convertToGray.cpp src/filterCanny.cpp src/resizeImage.cpp)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -142,7 +142,7 @@ add_library(FilterOnMat src/filterOnMat.cpp)
 # target_link_libraries(nodelet_cv_demo_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(FilterOnMat ${catkin_LIBRARIES})
+target_link_libraries(visionFilter ${catkin_LIBRARIES})
 
 #############
 ## Install ##

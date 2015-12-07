@@ -1,7 +1,19 @@
-<library path="lib/libFilterOnMat">
-   <class name="vision/FilterOnMat" type="vision::FilterOnMat" base_class_type="nodelet::Nodelet">
+<library path="lib/libvisionFilter">
+   <class name="vision/ConvertToGray" type="vision::ConvertToGray" base_class_type="nodelet::Nodelet">
       <description>
-         This class Receive an ROS-image do something with it and publish the resulting ROS-image.
+         This class receive an ROS-image, convert it to gray and publish the resulting ROS-image.
+      </description>
+   </class>
+
+   <class name="vision/FilterCanny" type="vision::FilterCanny" base_class_type="nodelet::Nodelet">
+      <description>
+         This class receive an ROS-image, using the canny algorithm on it and publish the resulting ROS-image.
+      </description>
+   </class>
+
+   <class name="vision/ResizeImage" type="vision::ResizeImage" base_class_type="nodelet::Nodelet">
+      <description>
+         This class receive an ROS-image, scale it and publish the resulting ROS-image.
       </description>
    </class>
 </library>

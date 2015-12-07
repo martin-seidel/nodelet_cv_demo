@@ -5,7 +5,8 @@
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 
-#include <opencv2/highgui/highgui.hpp>
+//#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 namespace vision
 {
@@ -13,14 +14,17 @@ namespace vision
    (CMakeLists.txt and nodelet_plugins.xml) and for starting the nodelet inside
    the launch-script.
    **/
-   class FilterOnMat : public nodelet::Nodelet
+   class ResizeImage : public nodelet::Nodelet
    {
       image_transport::Publisher img_pub; /**< send images from this nodelet **/
       image_transport::Subscriber img_sub;   /**< receive images for this nodelet **/
 
+      double fx;
+      double fy;
+
    public:
-      FilterOnMat(); /**< Intentionally left empty. **/
-      virtual ~FilterOnMat(); /**< Intentionally left empty. **/
+      ResizeImage(); /**< Intentionally left empty. **/
+      virtual ~ResizeImage(); /**< Intentionally left empty. **/
 
       /** Do the initialisation normally done in the constructor. Create
       #img_sub and #img_pub . **/
@@ -29,6 +33,6 @@ namespace vision
       /** Convert the received ros-image into a Cv::Mat. Then you can do real
       cool stuff with openCV on the image. Afterwards the image will be
       published as sensor_msgs::ImagePtr. **/
-      void inputCallback(const sensor_msgs::ImageConstPtr& msg);
+      void inputCallback(const sensor_msgs::ImageConstPtr& input_msg);
    };
 }

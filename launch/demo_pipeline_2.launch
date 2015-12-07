@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<launch>
+   <group ns="robOTTO/vision">
+      <node pkg="usb_cam" type="usb_cam_node" name="cam_input">
+         <param name="video_device" value="/dev/video0"/>
+         <param name="image_width" value="640"/>
+         <param name="image_heigth" value="480"/>
+      </node>
+
+      <node pkg="nodelet" type="nodelet" name="vision_nodelet_manager"  args="manager" output="screen"/>
+
+      <node pkg="nodelet" type="nodelet" name="Scale" args="load vision/ResizeImage vision_nodelet_manager" output="screen">
+         <param name="input_topic" value="cam_input/image_raw"/>
+         <param name="output_topic" value="scaled_image"/>
+         <param name="fx" value="1.5"/>
+         <param name="fy" value="2.5"/>
+      </node>
+
+      <node pkg="nodelet" type="nodelet" name="Canny" args="load vision/FilterCanny vision_nodelet_manager" output="screen">
+         <param name="input_topic" value="scaled_image"/>
+         <param name="output_topic" value="edge_image"/>
+         <!--param name="threshold1" value="30.1"/>
+         <param name="threshold2" value="50.5"/>
+         <param name="aperture" value="100"/-->
+      </node>
+   </group>
+</launch>
